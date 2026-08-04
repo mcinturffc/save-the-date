@@ -71,6 +71,7 @@
     position: relative;
     width: min(380px, calc(100vw - 32px));
     height: 590px;
+    transform: translateX(-5px);
   }
 
   .book.open {
@@ -78,6 +79,10 @@
   }
 
   .book.open .back {
+    height: 676px;
+  }
+
+  .book.open .front {
     height: 676px;
   }
 
@@ -741,11 +746,10 @@
 
   function flipToFeature() {
     clearTimers();
+    book.classList.add('open');
     layers.forEach((el, i) => {
       timers.push(setTimeout(() => el.classList.add('turning'), i * stepDelay));
     });
-    const revealDelay = (layers.length - 1) * stepDelay + 450; // last layer finishes turning
-    timers.push(setTimeout(() => book.classList.add('open'), revealDelay));
   }
 
   function closeCover() {
